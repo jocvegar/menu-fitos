@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import img from "./assets/images/chicken_blue_cheese.jpg";
 // styles
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,6 +10,8 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./App.scss";
 
 const theme = createMuiTheme();
@@ -37,6 +40,11 @@ const cardStyles = makeStyles({
 function App() {
   const cardClasses = cardStyles();
 
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
+
   return (
     <div className="App">
       <Container fixed maxWidth="md">
@@ -57,7 +65,7 @@ function App() {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Box px={1} mx="auto">
+              <Box px={1} mx="auto" data-aos="fade-down">
                 <Card className={cardClasses.root}>
                   <CardActionArea>
                     <CardMedia
