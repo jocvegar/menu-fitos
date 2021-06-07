@@ -55,7 +55,7 @@ function App() {
     <div className="App">
       <Container fixed maxWidth="md">
         <Box mt={6} mb={6} style={{ textAlign: "center" }}>
-          <img src={logo} className={cardClasses.logo} />
+          <img src={logo} className={cardClasses.logo} alt="logo" />
           <Grid container spacing={3} alignItems="center" justify="center">
             <Grid item xs={12}>
               <Typography
