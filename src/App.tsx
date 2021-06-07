@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import img from "./assets/images/chicken_blue_cheese.jpg";
+import logo from "./assets/images/logo.png";
+
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+// import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -14,17 +16,17 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import "./App.scss";
 
-const theme = createMuiTheme();
+// const theme = createMuiTheme();
 
-theme.typography.h2 = {
-  fontSize: "2rem",
-  "@media (min-width:600px)": {
-    fontSize: "2.3",
-  },
-  [theme.breakpoints.up("md")]: {
-    fontSize: "3rem",
-  },
-};
+// theme.typography.h2 = {
+//   fontSize: "2rem",
+//   "@media (min-width:600px)": {
+//     fontSize: "2.3",
+//   },
+//   [theme.breakpoints.up("md")]: {
+//     fontSize: "3rem",
+//   },
+// };
 
 const cardStyles = makeStyles({
   root: {
@@ -35,25 +37,25 @@ const cardStyles = makeStyles({
   media: {
     height: 300,
   },
+  logo: {
+    height: 150,
+  },
 });
 
 function App() {
   const cardClasses = cardStyles();
 
   useEffect(() => {
-    AOS.init();
-    AOS.refresh();
+    AOS.init({
+      once: false,
+    });
   }, []);
 
   return (
     <div className="App">
       <Container fixed maxWidth="md">
-        <Box mt={6} mb={6}>
-          <ThemeProvider theme={theme}>
-            <Typography align="center" variant="h2" gutterBottom>
-              FITOS
-            </Typography>
-          </ThemeProvider>
+        <Box mt={6} mb={6} style={{ textAlign: "center" }}>
+          <img src={logo} className={cardClasses.logo} />
           <Grid container spacing={3} alignItems="center" justify="center">
             <Grid item xs={12}>
               <Typography
@@ -65,7 +67,7 @@ function App() {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Box px={1} mx="auto" data-aos="fade-down">
+              <Box px={1} mx="auto" data-aos="fade-down" data-aos-delay="200">
                 <Card className={cardClasses.root}>
                   <CardActionArea>
                     <CardMedia
