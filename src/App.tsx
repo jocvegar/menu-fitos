@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import img from "./assets/images/chicken_blue_cheese.jpg";
 import logo from "./assets/images/logo.png";
-
+import ItemCard from "./components/ItemCard";
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
+import { useTheme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 // import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CardMedia from "@material-ui/core/CardMedia";
 import Card from "@material-ui/core/Card";
@@ -44,6 +46,8 @@ const cardStyles = makeStyles({
 
 function App() {
   const cardClasses = cardStyles();
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     AOS.init({
@@ -83,6 +87,21 @@ function App() {
           </Grid>
         </Box>
       </Container>
+      {/* <Box style={{ display: "flex", justifyContent: "center" }}>
+        <ItemCard />
+      </Box> */}
+
+      <Grid container spacing={isSmall ? 0 : 4}>
+        <Grid item xs={12} md={4} key={1}>
+          <ItemCard title="Card 1" />
+        </Grid>
+        <Grid item xs={12} md={4} key={2}>
+          <ItemCard title="Card 2" />
+        </Grid>
+        <Grid item xs={12} md={4} key={3}>
+          <ItemCard title="Card 3" />
+        </Grid>
+      </Grid>
     </div>
   );
 }

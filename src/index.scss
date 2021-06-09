@@ -1,9 +1,12 @@
+@import "./assets/styles/utilities.css";
+
 body {
   margin: 0;
   font-family: "MYRIADPRO", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: whitesmoke;
+  overflow-x: hidden;
 }
 
 @font-face {
