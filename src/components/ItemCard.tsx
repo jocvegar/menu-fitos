@@ -1,6 +1,12 @@
 import { useState } from "react";
 import img from "../assets/images/chicken_blue_cheese.jpg";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  useTheme,
+} from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 
@@ -53,6 +59,9 @@ type Props = {
 };
 function ItemCard({ title }: Props) {
   const classes = useStyles();
+  const theme = useTheme();
+  const isMdOrBigger = useMediaQuery(theme.breakpoints.up("md"));
+
   const [overlayHeight, setOverlayHeight] = useState("0%");
 
   const handleOverlayHeight = () => {
@@ -64,8 +73,8 @@ function ItemCard({ title }: Props) {
     <Card
       className={classes.root}
       onClick={() => handleOverlayHeight()}
-      onMouseEnter={() => setOverlayHeight("100%")}
-      onMouseLeave={() => setOverlayHeight("0%")}>
+      onMouseEnter={() => isMdOrBigger && setOverlayHeight("100%")}
+      onMouseLeave={() => isMdOrBigger && setOverlayHeight("0%")}>
       <CardMedia className={classes.media} image={img} title={title} />
       <div className={classes.overlay} style={{ height: overlayHeight }}>
         <div className={classes.text}>{title}</div>
