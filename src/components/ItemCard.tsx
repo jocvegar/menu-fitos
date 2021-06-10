@@ -9,6 +9,7 @@ import {
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 0,
     },
     media: {
-      paddingTop: "80%",
+      height: 350,
       display: "block",
       width: "100%",
     },
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       bottom: "0",
       left: "0",
       right: "0",
-      backgroundColor: "#22222279",
+      backgroundColor: "#000000a1",
       overflow: "hidden",
       width: "100%",
       transition: "0.5s ease",
@@ -36,48 +37,75 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "white",
       fontSize: "20px",
       position: "absolute",
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      textAlign: "center",
+      top: "20px",
+      left: "20px",
     },
-    // expand: {
-    //   transform: "rotate(0deg)",
-    //   marginLeft: "auto",
-    //   transition: theme.transitions.create("transform", {
-    //     duration: theme.transitions.duration.shortest,
-    //   }),
-    // },
-    // expandOpen: {
-    //   transform: "rotate(180deg)",
-    // },
+    mainOverlay: {
+      position: "absolute",
+      bottom: "0",
+      left: "15px",
+      right: "0",
+      color: "white",
+    },
   })
 );
 
 type Props = {
   title: string;
 };
+
 function ItemCard({ title }: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const isMdOrBigger = useMediaQuery(theme.breakpoints.up("md"));
 
   const [overlayHeight, setOverlayHeight] = useState("0%");
+  const [showTitle, setShowTitle] = useState(true);
 
   const handleOverlayHeight = () => {
     const initialState = overlayHeight === "100%" ? "0%" : "100%";
     setOverlayHeight(initialState);
+    setShowTitle(!showTitle);
+  };
+
+  const showOverLay = (): void => {
+    setOverlayHeight("100%");
+    setShowTitle(false);
+  };
+
+  const hideOverLay = (): void => {
+    setOverlayHeight("0%");
+    setShowTitle(true);
   };
 
   return (
     <Card
       className={classes.root}
       onClick={() => handleOverlayHeight()}
-      onMouseEnter={() => isMdOrBigger && setOverlayHeight("100%")}
-      onMouseLeave={() => isMdOrBigger && setOverlayHeight("0%")}>
+      onMouseEnter={() => isMdOrBigger && showOverLay()}
+      onMouseLeave={() => isMdOrBigger && hideOverLay()}>
       <CardMedia className={classes.media} image={img} title={title} />
+
+      {showTitle && (
+        <Typography
+          gutterBottom
+          variant={"h3" as any}
+          className={classes.mainOverlay}>
+          {title}
+        </Typography>
+      )}
+
       <div className={classes.overlay} style={{ height: overlayHeight }}>
-        <div className={classes.text}>{title}</div>
+        <div className={classes.text}>
+          <Typography gutterBottom variant={"h3" as any} align="left">
+            {title}
+          </Typography>
+          <br />
+          <Typography paragraph align="left">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Exercitationem.
+          </Typography>
+        </div>
       </div>
     </Card>
   );
