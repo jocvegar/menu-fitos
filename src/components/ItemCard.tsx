@@ -1,5 +1,5 @@
 import { useState } from "react";
-import img from "../assets/images/chicken_blue_cheese.jpg";
+// styles
 import {
   makeStyles,
   Theme,
@@ -53,9 +53,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 type Props = {
   title: string;
+  description: string;
+  price: string;
+  imgSrc: string;
 };
 
-function ItemCard({ title }: Props) {
+function ItemCard({ title, description, price, imgSrc }: Props) {
   const classes = useStyles();
   const theme = useTheme();
   const isMdOrBigger = useMediaQuery(theme.breakpoints.up("md"));
@@ -85,7 +88,12 @@ function ItemCard({ title }: Props) {
       onClick={() => handleOverlayHeight()}
       onMouseEnter={() => isMdOrBigger && showOverLay()}
       onMouseLeave={() => isMdOrBigger && hideOverLay()}>
-      <CardMedia className={classes.media} image={img} title={title} />
+      <CardMedia
+        className={classes.media}
+        image={imgSrc}
+        src={imgSrc}
+        title={title}
+      />
 
       {showTitle && (
         <Typography
@@ -108,14 +116,12 @@ function ItemCard({ title }: Props) {
           </Typography>
           <br />
           <Typography paragraph align="left">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Exercitationem.Lorem ipsum dolor, sit amet consectetur adipisicing
-            elit. Exercitationem.
+            {description}
           </Typography>
           <br />
           <Box mr={5}>
             <Typography variant="h5" align="right" color="primary">
-              Lps. 200
+              Lps. {price}
             </Typography>
           </Box>
         </div>
