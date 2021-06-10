@@ -12,6 +12,9 @@ import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./App.scss";
@@ -48,9 +51,13 @@ const cardStyles = makeStyles({
   logo: {
     height: 150,
   },
+  navLogo: {
+    height: 50,
+  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    overflow: "hidden",
   },
   drawerPaper: {
     width: drawerWidth,
@@ -59,6 +66,10 @@ const cardStyles = makeStyles({
   },
   content: {
     flexGrow: 1,
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    backgroundColor: "whitesmoke",
   },
 });
 
@@ -72,47 +83,57 @@ function App() {
   }, []);
 
   return (
-    <div className={`${classes.main} App`}>
-      <ThemeProvider theme={theme}>
-        <Hidden mdDown>
-          <Drawer
-            className={classes.drawer}
-            variant="permanent"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            anchor="left">
-            <List style={{ marginTop: "13em" }}>
-              {["Entradas", "Burgers", "Sandwiches", "Combos"].map((text) => (
-                <ListItem button key={text} style={{ textAlign: "end" }}>
-                  <ListItemText
-                    primary={
-                      <React.Fragment>
-                        <Typography
-                          component="span"
-                          variant="h4"
-                          color="primary">
-                          {text}
-                        </Typography>
-                      </React.Fragment>
-                    }
-                  />
-                </ListItem>
-              ))}
-            </List>
-          </Drawer>
-        </Hidden>
+    <>
+      <div className={`${classes.main} App`}>
+        <ThemeProvider theme={theme}>
+          <AppBar position="fixed" className={classes.appBar}>
+            <Toolbar>
+              <img src={logo} className={classes.navLogo} alt="logo" />
+            </Toolbar>
+          </AppBar>
 
-        <main className={`${classes.content} pa-0 pa-md-8`}>
-          <Container fixed maxWidth="md">
-            <Box mt={2} mb={2} style={{ textAlign: "center" }}>
-              <img src={logo} className={classes.logo} alt="logo" />
-            </Box>
-          </Container>
-          <Itemlist />
-        </main>
-      </ThemeProvider>
-    </div>
+          <Hidden mdDown>
+            <Drawer
+              className={classes.drawer}
+              variant="permanent"
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              anchor="left">
+              <List style={{ marginTop: "12em" }}>
+                {["Entradas", "Burgers", "Sandwiches", "Combos"].map((text) => (
+                  <ListItem button key={text} style={{ textAlign: "end" }}>
+                    <ListItemText
+                      primary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="h4"
+                            color="primary">
+                            {text}
+                          </Typography>
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            </Drawer>
+          </Hidden>
+
+          <main className={`${classes.content} pa-0 pa-md-8`}>
+            <Container fixed maxWidth="md">
+              <Box mt={10} mb={5} style={{ textAlign: "center" }}>
+                <Typography component="span" variant="h3">
+                  MENU
+                </Typography>
+              </Box>
+            </Container>
+            <Itemlist />
+          </main>
+        </ThemeProvider>
+      </div>
+    </>
   );
 }
 
