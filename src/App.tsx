@@ -1,20 +1,23 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Itemlist from "./components/ItemList";
-import img from "./assets/images/chicken_blue_cheese.jpg";
 import logo from "./assets/images/logo.png";
 // styles
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import CardMedia from "@material-ui/core/CardMedia";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import Drawer from "@material-ui/core/Drawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./App.scss";
+import "./assets/styles/utilities.css";
+
+const drawerWidth = 240;
 
 const theme = createMuiTheme({
   typography: {
@@ -36,16 +39,31 @@ const cardStyles = makeStyles({
     borderRadius: "1rem",
     margin: "0 auto",
   },
+  main: {
+    display: "flex",
+  },
   media: {
     height: 300,
   },
   logo: {
     height: 150,
   },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: "whitesmoke",
+    borderRight: "none",
+  },
+  content: {
+    flexGrow: 1,
+  },
 });
 
 function App() {
-  const cardClasses = cardStyles();
+  const classes = cardStyles();
 
   useEffect(() => {
     AOS.init({
@@ -54,39 +72,45 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={`${classes.main} App`}>
       <ThemeProvider theme={theme}>
-        <Container fixed maxWidth="md">
-          <Box mt={3} mb={3} style={{ textAlign: "center" }}>
-            <img src={logo} className={cardClasses.logo} alt="logo" />
-            <Grid container spacing={3} alignItems="center" justify="center">
-              <Grid item xs={12}>
-                <Typography
-                  style={{ fontWeight: 800 }}
-                  align="center"
-                  variant="h4"
-                  gutterBottom>
-                  MENU
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Box px={1} mx="auto" data-aos="fade-down" data-aos-delay="200">
-                  <Card className={cardClasses.root}>
-                    <CardActionArea>
-                      <CardMedia
-                        className={cardClasses.media}
-                        component="img"
-                        alt="fitos"
-                        image={img}
-                      />
-                    </CardActionArea>
-                  </Card>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-        </Container>
-        <Itemlist />
+        <Hidden mdDown>
+          <Drawer
+            className={classes.drawer}
+            variant="permanent"
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            anchor="left">
+            <List style={{ marginTop: "13em" }}>
+              {["Entradas", "Burgers", "Sandwiches", "Combos"].map((text) => (
+                <ListItem button key={text} style={{ textAlign: "end" }}>
+                  <ListItemText
+                    primary={
+                      <React.Fragment>
+                        <Typography
+                          component="span"
+                          variant="h4"
+                          color="primary">
+                          {text}
+                        </Typography>
+                      </React.Fragment>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Drawer>
+        </Hidden>
+
+        <main className={`${classes.content} pa-0 pa-md-8`}>
+          <Container fixed maxWidth="md">
+            <Box mt={2} mb={2} style={{ textAlign: "center" }}>
+              <img src={logo} className={classes.logo} alt="logo" />
+            </Box>
+          </Container>
+          <Itemlist />
+        </main>
       </ThemeProvider>
     </div>
   );
