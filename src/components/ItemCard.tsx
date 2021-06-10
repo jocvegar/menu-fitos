@@ -10,6 +10,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -90,21 +91,33 @@ function ItemCard({ title }: Props) {
         <Typography
           gutterBottom
           variant={"h3" as any}
-          className={classes.mainOverlay}>
+          className={classes.mainOverlay}
+          data-aos="fade-right">
           {title}
         </Typography>
       )}
 
       <div className={classes.overlay} style={{ height: overlayHeight }}>
         <div className={classes.text}>
-          <Typography gutterBottom variant={"h3" as any} align="left">
+          <Typography
+            gutterBottom
+            variant={"h3" as any}
+            align="left"
+            color="primary">
             {title}
           </Typography>
           <br />
           <Typography paragraph align="left">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Exercitationem.
+            Exercitationem.Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Exercitationem.
           </Typography>
+          <br />
+          <Box mr={5}>
+            <Typography variant="h5" align="right" color="primary">
+              Lps. 200
+            </Typography>
+          </Box>
         </div>
       </div>
     </Card>

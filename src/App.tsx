@@ -25,6 +25,14 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: ["MYRIADPRO", "Helvetica Neue", "sans-serif"].join(","),
   },
+  palette: {
+    primary: {
+      main: "#de5200",
+    },
+    secondary: {
+      main: "#ff9d2d",
+    },
+  },
 });
 
 const cardStyles = makeStyles({
@@ -48,7 +56,7 @@ function App() {
 
   useEffect(() => {
     AOS.init({
-      once: false,
+      once: true,
     });
   }, []);
 
