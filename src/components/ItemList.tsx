@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ItemCard from "./ItemCard";
 import { menuCollection } from "../firebase";
 import { IMenuItem } from "../Interfaces";
@@ -26,6 +26,7 @@ const ItemList = () => {
             description: doc.data().description,
             price: doc.data().price,
             imgSrc: doc.data().imgSrc,
+            category: doc.data().category,
           })
         );
       });
@@ -33,6 +34,10 @@ const ItemList = () => {
       setLoading(false);
     });
   }, []);
+
+  const pizzaMenu = useMemo(() => {
+    return menu.filter((item: IMenuItem) => item.category === "pizza");
+  }, [menu]);
 
   return (
     <div>
@@ -45,21 +50,28 @@ const ItemList = () => {
           </Box>
         )}
 
-        <Grid container spacing={isSmall ? 1 : 4}>
-          {menu &&
-            menu.map((menuItem: IMenuItem) => {
-              return (
-                <Grid item xs={12} md={4} key={menuItem.id}>
-                  <ItemCard
-                    title={menuItem.title}
-                    description={menuItem.description}
-                    price={menuItem.price}
-                    imgSrc={menuItem.imgSrc}
-                  />
-                </Grid>
-              );
-            })}
-        </Grid>
+        {!loading && (
+          <div className="categories" id="pizza">
+            <Typography variant="h4" gutterBottom color="primary">
+              <strong>Pizza</strong>
+            </Typography>
+            <Grid container spacing={isSmall ? 1 : 4}>
+              {pizzaMenu &&
+                pizzaMenu.map((menuItem: IMenuItem) => {
+                  return (
+                    <Grid item xs={12} md={4} key={menuItem.id}>
+                      <ItemCard
+                        title={menuItem.title}
+                        description={menuItem.description}
+                        price={menuItem.price}
+                        imgSrc={menuItem.imgSrc}
+                      />
+                    </Grid>
+                  );
+                })}
+            </Grid>
+          </div>
+        )}
       </Box>
     </div>
   );
