@@ -4,5 +4,6 @@ export interface IMenuItem {
   description: string;
   price: string;
   imgSrc: string;
-  category: string
+  category: string;
+  position: number;
 }

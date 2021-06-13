@@ -50,6 +50,7 @@ const cardStyles = makeStyles({
   },
   logo: {
     height: 150,
+    marginTop: "4em",
   },
   navLogo: {
     height: 50,
@@ -82,6 +83,18 @@ function App() {
     });
   }, []);
 
+  const handleClick = (idx: number): void => {
+    const element = document.getElementById("boxes")!;
+    const headerOffset = 75;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <div className={`${classes.main} App`}>
@@ -100,35 +113,40 @@ function App() {
                 paper: classes.drawerPaper,
               }}
               anchor="left">
-              <List style={{ marginTop: "12em" }}>
-                {["Entradas", "Burgers", "Sandwiches", "Combos"].map((text) => (
-                  <ListItem button key={text} style={{ textAlign: "end" }}>
-                    <ListItemText
-                      primary={
-                        <React.Fragment>
-                          <Typography
-                            component="span"
-                            variant="h4"
-                            color="primary">
-                            {text}
-                          </Typography>
-                        </React.Fragment>
-                      }
-                    />
-                  </ListItem>
-                ))}
+              <img src={logo} className={classes.logo} alt="logo" />
+
+              <List style={{ marginTop: "1em" }}>
+                {["Entradas", "Burgers", "Sandwiches", "Combos"].map(
+                  (text, idx) => (
+                    <ListItem button key={text} style={{ textAlign: "end" }}>
+                      <ListItemText
+                        primary={
+                          <React.Fragment>
+                            <Typography
+                              component="span"
+                              variant="h4"
+                              color="primary"
+                              onClick={() => handleClick(idx)}>
+                              {text}
+                            </Typography>
+                          </React.Fragment>
+                        }
+                      />
+                    </ListItem>
+                  )
+                )}
               </List>
             </Drawer>
           </Hidden>
 
-          <main className={`${classes.content} pa-0 pa-md-8`}>
-            <Container fixed maxWidth="md">
+          <main className={`${classes.content} pa-0 pa-md-8 mt-5`}>
+            {/* <Container fixed maxWidth="md">
               <Box mt={10} mb={5} style={{ textAlign: "center" }}>
                 <Typography component="span" variant="h3">
                   MENU
                 </Typography>
               </Box>
-            </Container>
+            </Container> */}
             <Itemlist />
           </main>
         </ThemeProvider>

@@ -27,6 +27,7 @@ const ItemList = () => {
             price: doc.data().price,
             imgSrc: doc.data().imgSrc,
             category: doc.data().category,
+            position: doc.data().position,
           })
         );
       });
@@ -35,15 +36,23 @@ const ItemList = () => {
     });
   }, []);
 
-  const pizzaMenu = useMemo(() => {
-    return menu.filter((item: IMenuItem) => item.category === "pizza");
+  const boxMenu = useMemo(() => {
+    return menu
+      .filter((item: IMenuItem) => item.category === "boxes")
+      .sort((a: IMenuItem, b: IMenuItem) => (a.position < b.position ? -1 : 1));
+  }, [menu]);
+
+  const burgerMenu = useMemo(() => {
+    return menu
+      .filter((item: IMenuItem) => item.category === "burgers")
+      .sort((a: IMenuItem, b: IMenuItem) => (a.position < b.position ? -1 : 1));
   }, [menu]);
 
   return (
     <div>
       <Box mb={10}>
         {loading && (
-          <Box mt={4}>
+          <Box mt={10}>
             <Typography variant="h4" gutterBottom align="center">
               Cargando...
             </Typography>
@@ -51,26 +60,57 @@ const ItemList = () => {
         )}
 
         {!loading && (
-          <div className="categories" id="pizza">
-            <Typography variant="h4" gutterBottom color="primary">
-              <strong>Pizza</strong>
-            </Typography>
-            <Grid container spacing={isSmall ? 1 : 4}>
-              {pizzaMenu &&
-                pizzaMenu.map((menuItem: IMenuItem) => {
-                  return (
-                    <Grid item xs={12} md={4} key={menuItem.id}>
-                      <ItemCard
-                        title={menuItem.title}
-                        description={menuItem.description}
-                        price={menuItem.price}
-                        imgSrc={menuItem.imgSrc}
-                      />
-                    </Grid>
-                  );
-                })}
-            </Grid>
-          </div>
+          <>
+            <div id="burgers">
+              <Typography
+                variant="h4"
+                gutterBottom
+                color="primary"
+                className="mt-10">
+                <strong>Burgers</strong>
+              </Typography>
+              <Grid container spacing={isSmall ? 1 : 4}>
+                {burgerMenu &&
+                  burgerMenu.map((menuItem: IMenuItem) => {
+                    return (
+                      <Grid item xs={12} md={4} key={menuItem.id}>
+                        <ItemCard
+                          title={menuItem.title}
+                          description={menuItem.description}
+                          price={menuItem.price}
+                          imgSrc={menuItem.imgSrc}
+                        />
+                      </Grid>
+                    );
+                  })}
+              </Grid>
+            </div>
+
+            <div id="boxes">
+              <Typography
+                variant="h4"
+                gutterBottom
+                color="primary"
+                className="mt-10">
+                <strong>Boxes</strong>
+              </Typography>
+              <Grid container spacing={isSmall ? 1 : 4}>
+                {boxMenu &&
+                  boxMenu.map((menuItem: IMenuItem) => {
+                    return (
+                      <Grid item xs={12} md={4} key={menuItem.id}>
+                        <ItemCard
+                          title={menuItem.title}
+                          description={menuItem.description}
+                          price={menuItem.price}
+                          imgSrc={menuItem.imgSrc}
+                        />
+                      </Grid>
+                    );
+                  })}
+              </Grid>
+            </div>
+          </>
         )}
       </Box>
     </div>
