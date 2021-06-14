@@ -48,6 +48,12 @@ const ItemList = () => {
       .sort((a: IMenuItem, b: IMenuItem) => (a.position < b.position ? -1 : 1));
   }, [menu]);
 
+  const tendersMenu = useMemo(() => {
+    return menu
+      .filter((item: IMenuItem) => item.category === "tenders")
+      .sort((a: IMenuItem, b: IMenuItem) => (a.position < b.position ? -1 : 1));
+  }, [menu]);
+
   return (
     <div>
       <Box mb={10}>
@@ -72,6 +78,31 @@ const ItemList = () => {
               <Grid container spacing={isSmall ? 1 : 4}>
                 {burgerMenu &&
                   burgerMenu.map((menuItem: IMenuItem) => {
+                    return (
+                      <Grid item xs={12} md={4} key={menuItem.id}>
+                        <ItemCard
+                          title={menuItem.title}
+                          description={menuItem.description}
+                          price={menuItem.price}
+                          imgSrc={menuItem.imgSrc}
+                        />
+                      </Grid>
+                    );
+                  })}
+              </Grid>
+            </div>
+
+            <div id="tenders">
+              <Typography
+                variant="h4"
+                gutterBottom
+                color="primary"
+                className="mt-10">
+                <strong>Chicken Tendres</strong>
+              </Typography>
+              <Grid container spacing={isSmall ? 1 : 4}>
+                {tendersMenu &&
+                  tendersMenu.map((menuItem: IMenuItem) => {
                     return (
                       <Grid item xs={12} md={4} key={menuItem.id}>
                         <ItemCard

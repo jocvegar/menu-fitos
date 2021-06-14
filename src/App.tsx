@@ -14,7 +14,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./App.scss";
@@ -84,7 +83,35 @@ function App() {
   }, []);
 
   const handleClick = (idx: number): void => {
-    const element = document.getElementById("boxes")!;
+    let elementId = "";
+
+    switch (idx) {
+      case 0:
+        elementId = "entradas";
+        break;
+      case 1:
+        elementId = "sandwiches";
+        break;
+      case 2:
+        elementId = "burgers";
+        break;
+      case 3:
+        elementId = "tenders";
+        break;
+      case 4:
+        elementId = "salads";
+        break;
+      case 5:
+        elementId = "boxes";
+        break;
+      case 6:
+        elementId = "pizza";
+        break;
+      default:
+        elementId = "entradas";
+        break;
+    }
+    const element = document.getElementById(elementId)!;
     const headerOffset = 75;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition - headerOffset;
@@ -116,25 +143,31 @@ function App() {
               <img src={logo} className={classes.logo} alt="logo" />
 
               <List style={{ marginTop: "1em" }}>
-                {["Entradas", "Burgers", "Sandwiches", "Combos"].map(
-                  (text, idx) => (
-                    <ListItem button key={text} style={{ textAlign: "end" }}>
-                      <ListItemText
-                        primary={
-                          <React.Fragment>
-                            <Typography
-                              component="span"
-                              variant="h4"
-                              color="primary"
-                              onClick={() => handleClick(idx)}>
-                              {text}
-                            </Typography>
-                          </React.Fragment>
-                        }
-                      />
-                    </ListItem>
-                  )
-                )}
+                {[
+                  "Entradas",
+                  "Sandwiches",
+                  "Burgers",
+                  "Chicken Tenders",
+                  "Ensaladas",
+                  "Combos",
+                  "Pizzas",
+                ].map((text, idx) => (
+                  <ListItem button key={text} style={{ textAlign: "end" }}>
+                    <ListItemText
+                      primary={
+                        <React.Fragment>
+                          <Typography
+                            component="span"
+                            variant="h4"
+                            color="primary"
+                            onClick={() => handleClick(idx)}>
+                            {text}
+                          </Typography>
+                        </React.Fragment>
+                      }
+                    />
+                  </ListItem>
+                ))}
               </List>
             </Drawer>
           </Hidden>
