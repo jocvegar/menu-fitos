@@ -57,7 +57,6 @@ const cardStyles = makeStyles({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    overflow: "hidden",
   },
   drawerPaper: {
     width: drawerWidth,
@@ -87,7 +86,7 @@ function App() {
 
     switch (idx) {
       case 0:
-        elementId = "entradas";
+        elementId = "entrees";
         break;
       case 1:
         elementId = "sandwiches";
@@ -105,10 +104,10 @@ function App() {
         elementId = "boxes";
         break;
       case 6:
-        elementId = "pizza";
+        elementId = "pizzas";
         break;
       default:
-        elementId = "entradas";
+        elementId = "entrees";
         break;
     }
     const element = document.getElementById(elementId)!;
@@ -142,14 +141,14 @@ function App() {
               anchor="left">
               <img src={logo} className={classes.logo} alt="logo" />
 
-              <List style={{ marginTop: "1em" }}>
+              <List style={{ marginTop: "1em" }} className="navDrawer">
                 {[
-                  "Entradas",
                   "Sandwiches",
                   "Burgers",
                   "Chicken Tenders",
                   "Ensaladas",
-                  "Combos",
+                  "Para Picar",
+                  "Boxes",
                   "Pizzas",
                 ].map((text, idx) => (
                   <ListItem button key={text} style={{ textAlign: "end" }}>

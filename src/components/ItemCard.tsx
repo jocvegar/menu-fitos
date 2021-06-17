@@ -11,7 +11,7 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import logo from "../assets/images/logo.png";
+import placeholder from "../assets/images/placeholder.jpg";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -91,8 +91,8 @@ function ItemCard({ title, description, price, imgSrc }: Props) {
       onMouseLeave={() => isMdOrBigger && hideOverLay()}>
       <CardMedia
         className={classes.media}
-        image={imgSrc || logo}
-        src={imgSrc || logo}
+        image={imgSrc || placeholder}
+        src={imgSrc || placeholder}
         title={title}
       />
 

@@ -1,0 +1,13 @@
+.navDrawer::-webkit-scrollbar {
+  display: none;
+}
+
+.navDrawer ::-moz-scrollbar {
+  display: none;
+}
+
+.navDrawer {
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-color: transparent transparent; /*just hides the scrollbar for firefox */
+}
