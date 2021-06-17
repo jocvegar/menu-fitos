@@ -81,7 +81,16 @@ function App() {
     });
   }, []);
 
-  const handleClick = (idx: number): void => {
+  const goToTop = (): void => {
+    console.log("I was clicked");
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const goToElment = (idx: number): void => {
     let elementId = "";
 
     switch (idx) {
@@ -127,7 +136,12 @@ function App() {
         <ThemeProvider theme={theme}>
           <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>
-              <img src={logo} className={classes.navLogo} alt="logo" />
+              <img
+                src={logo}
+                className={classes.navLogo}
+                alt="logo"
+                onClick={goToTop}
+              />
             </Toolbar>
           </AppBar>
 
@@ -159,7 +173,7 @@ function App() {
                             component="span"
                             variant="h4"
                             color="primary"
-                            onClick={() => handleClick(idx)}>
+                            onClick={() => goToElment(idx)}>
                             {text}
                           </Typography>
                         </React.Fragment>
