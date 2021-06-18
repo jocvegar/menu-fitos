@@ -11,3 +11,9 @@
   -ms-overflow-style: none;
   scrollbar-color: transparent transparent; /*just hides the scrollbar for firefox */
 }
+
+.titleWrapper {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}

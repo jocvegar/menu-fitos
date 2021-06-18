@@ -93,13 +93,18 @@ const ItemList = () => {
         {!loading && (
           <>
             <div id="sandwiches">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
-                <strong>Sandwiches</strong>
-              </Typography>
+              <div className="titleWrapper">
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  color="primary"
+                  className="mt-10 mr-2">
+                  <strong>Sandwiches</strong>
+                </Typography>
+                <Typography variant="h6" gutterBottom color="secondary">
+                  Incluye Papas (+ Lps. 45 con Dirty Fries)
+                </Typography>
+              </div>
               <Grid container spacing={isSmall ? 1 : 4}>
                 {sandwichMenu &&
                   sandwichMenu.map((menuItem: IMenuItem) => {
@@ -118,13 +123,18 @@ const ItemList = () => {
             </div>
 
             <div id="burgers">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
-                <strong>Burgers</strong>
-              </Typography>
+              <div className="titleWrapper">
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  color="primary"
+                  className="mt-10 mr-2">
+                  <strong>Burgers</strong>
+                </Typography>
+                <Typography variant="h6" gutterBottom color="secondary">
+                  Incluye Papas (+ Lps. 45 con Dirty Fries)
+                </Typography>
+              </div>
               <Grid container spacing={isSmall ? 1 : 4}>
                 {burgerMenu &&
                   burgerMenu.map((menuItem: IMenuItem) => {
@@ -150,6 +160,20 @@ const ItemList = () => {
                 className="mt-10">
                 <strong>Chicken Tendres</strong>
               </Typography>
+
+              <div className="titleWrapper">
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  color="primary"
+                  className="mt-10 mr-2">
+                  <strong>Chicken Tendres</strong>
+                </Typography>
+                <Typography variant="h6" gutterBottom color="secondary">
+                  + Lps. 30 orden Papas || + Lps. 45 con Dirty Fries
+                </Typography>
+              </div>
+
               <Grid container spacing={isSmall ? 1 : 4}>
                 {tendersMenu &&
                   tendersMenu.map((menuItem: IMenuItem) => {
