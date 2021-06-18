@@ -153,14 +153,6 @@ const ItemList = () => {
             </div>
 
             <div id="tenders">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
-                <strong>Chicken Tendres</strong>
-              </Typography>
-
               <div className="titleWrapper">
                 <Typography
                   variant="h4"
