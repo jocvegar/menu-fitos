@@ -3,9 +3,9 @@ import Itemlist from "./components/ItemList";
 import logo from "./assets/images/logo.png";
 // styles
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+// import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+// import Box from "@material-ui/core/Box";
 import Hidden from "@material-ui/core/Hidden";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -107,12 +107,15 @@ function App() {
         elementId = "tenders";
         break;
       case 4:
-        elementId = "salads";
+        elementId = "suaces";
         break;
       case 5:
-        elementId = "boxes";
+        elementId = "salads";
         break;
       case 6:
+        elementId = "boxes";
+        break;
+      case 7:
         elementId = "pizzas";
         break;
       default:
@@ -160,6 +163,7 @@ function App() {
                   "Sandwiches",
                   "Burgers",
                   "Chicken Tenders",
+                  "Salsas",
                   "Ensaladas",
                   "Para Picar",
                   "Boxes",

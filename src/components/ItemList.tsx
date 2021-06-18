@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import ItemCard from "./ItemCard";
+import ItemSuaceCard from "./ItemSuaceCard";
 import { menuCollection } from "../firebase";
 import { IMenuItem } from "../Interfaces";
 // styles
@@ -163,6 +164,30 @@ const ItemList = () => {
                       </Grid>
                     );
                   })}
+              </Grid>
+            </div>
+
+            <div id="suaces">
+              <Typography
+                variant="h4"
+                gutterBottom
+                color="primary"
+                className="mt-10">
+                <strong>Salsas</strong>
+              </Typography>
+              <Grid container spacing={isSmall ? 1 : 4}>
+                {[
+                  "Berry BBQ",
+                  "El Amado",
+                  "Buffalo Habanero",
+                  "Strawberry Honey",
+                ].map((item, idx) => {
+                  return (
+                    <Grid item xs={12} md={4} key={idx}>
+                      <ItemSuaceCard title={item} />
+                    </Grid>
+                  );
+                })}
               </Grid>
             </div>
 
