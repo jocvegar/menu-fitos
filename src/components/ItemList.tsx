@@ -84,7 +84,7 @@ const ItemList = () => {
       <Box mb={10}>
         {loading && (
           <Box mt={10}>
-            <Typography variant="h4" gutterBottom align="center">
+            <Typography variant="h4" align="center">
               Cargando...
             </Typography>
           </Box>
@@ -94,14 +94,10 @@ const ItemList = () => {
           <>
             <div id="sandwiches">
               <div className="titleWrapper">
-                <Typography
-                  variant="h4"
-                  gutterBottom
-                  color="primary"
-                  className="mt-10 mr-2">
+                <Typography variant="h4" color="primary" className="mt-10 mr-2">
                   <strong>Sandwiches</strong>
                 </Typography>
-                <Typography variant="h6" gutterBottom color="secondary">
+                <Typography variant="h6" color="secondary">
                   Incluye Papas (+ Lps. 45 con Dirty Fries)
                 </Typography>
               </div>
@@ -124,14 +120,10 @@ const ItemList = () => {
 
             <div id="burgers">
               <div className="titleWrapper">
-                <Typography
-                  variant="h4"
-                  gutterBottom
-                  color="primary"
-                  className="mt-10 mr-2">
+                <Typography variant="h4" color="primary" className="mt-10 mr-2">
                   <strong>Burgers</strong>
                 </Typography>
-                <Typography variant="h6" gutterBottom color="secondary">
+                <Typography variant="h6" color="secondary">
                   Incluye Papas (+ Lps. 45 con Dirty Fries)
                 </Typography>
               </div>
@@ -154,14 +146,10 @@ const ItemList = () => {
 
             <div id="tenders">
               <div className="titleWrapper">
-                <Typography
-                  variant="h4"
-                  gutterBottom
-                  color="primary"
-                  className="mt-10 mr-2">
+                <Typography variant="h4" color="primary" className="mt-10 mr-2">
                   <strong>Chicken Tendres</strong>
                 </Typography>
-                <Typography variant="h6" gutterBottom color="secondary">
+                <Typography variant="h6" color="secondary">
                   + Lps. 30 orden Papas || + Lps. 45 con Dirty Fries
                 </Typography>
               </div>
@@ -184,11 +172,7 @@ const ItemList = () => {
             </div>
 
             <div id="suaces">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
+              <Typography variant="h4" color="primary" className="mt-10">
                 <strong>Salsas</strong>
               </Typography>
               <Grid container spacing={isSmall ? 1 : 4}>
@@ -208,11 +192,7 @@ const ItemList = () => {
             </div>
 
             <div id="salads">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
+              <Typography variant="h4" color="primary" className="mt-10">
                 <strong>Ensaladas</strong>
               </Typography>
               <Grid container spacing={isSmall ? 1 : 4}>
@@ -233,11 +213,7 @@ const ItemList = () => {
             </div>
 
             <div id="entrees">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
+              <Typography variant="h4" color="primary" className="mt-10">
                 <strong>Para Picar</strong>
               </Typography>
               <Grid container spacing={isSmall ? 1 : 4}>
@@ -258,11 +234,7 @@ const ItemList = () => {
             </div>
 
             <div id="boxes">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
+              <Typography variant="h4" color="primary" className="mt-10">
                 <strong>Boxes</strong>
               </Typography>
               <Grid container spacing={isSmall ? 1 : 4}>
@@ -283,11 +255,7 @@ const ItemList = () => {
             </div>
 
             <div id="pizzas">
-              <Typography
-                variant="h4"
-                gutterBottom
-                color="primary"
-                className="mt-10">
+              <Typography variant="h4" color="primary" className="mt-10">
                 <strong>Pizzas</strong>
               </Typography>
               <Grid container spacing={isSmall ? 1 : 4}>
