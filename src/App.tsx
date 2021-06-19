@@ -92,25 +92,25 @@ function App() {
 
   const goToElment = (idx: number): void => {
     let elementId = "";
-
+    console.log("idx ", idx);
     switch (idx) {
       case 0:
-        elementId = "entrees";
-        break;
-      case 1:
         elementId = "sandwiches";
         break;
-      case 2:
+      case 1:
         elementId = "burgers";
         break;
-      case 3:
+      case 2:
         elementId = "tenders";
         break;
-      case 4:
+      case 3:
         elementId = "suaces";
         break;
-      case 5:
+      case 4:
         elementId = "salads";
+        break;
+      case 5:
+        elementId = "entrees";
         break;
       case 6:
         elementId = "boxes";
@@ -119,17 +119,15 @@ function App() {
         elementId = "pizzas";
         break;
       default:
-        elementId = "entrees";
+        elementId = "sandwiches";
         break;
     }
     const element = document.getElementById(elementId)!;
-    const headerOffset = 75;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition - headerOffset;
+    const elementPosition = element.offsetTop;
 
     window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
+      top: elementPosition - 45, //add your necessary value
+      behavior: "smooth", //Smooth transition to roll
     });
   };
 
