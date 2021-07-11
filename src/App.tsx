@@ -95,22 +95,22 @@ function App() {
     console.log("idx ", idx);
     switch (idx) {
       case 0:
-        elementId = "sandwiches";
+        elementId = "entrees";
         break;
       case 1:
-        elementId = "burgers";
+        elementId = "sandwiches";
         break;
       case 2:
-        elementId = "tenders";
+        elementId = "burgers";
         break;
       case 3:
-        elementId = "suaces";
+        elementId = "tenders";
         break;
       case 4:
-        elementId = "salads";
+        elementId = "suaces";
         break;
       case 5:
-        elementId = "entrees";
+        elementId = "salads";
         break;
       case 6:
         elementId = "boxes";
@@ -118,8 +118,11 @@ function App() {
       case 7:
         elementId = "pizzas";
         break;
+      case 8:
+        elementId = "drinks";
+        break;
       default:
-        elementId = "sandwiches";
+        elementId = "entrees";
         break;
     }
     const element = document.getElementById(elementId)!;
@@ -153,19 +156,21 @@ function App() {
               classes={{
                 paper: classes.drawerPaper,
               }}
-              anchor="left">
+              anchor="left"
+            >
               <img src={logo} className={classes.logo} alt="logo" />
 
               <List style={{ marginTop: "1em" }} className="navDrawer">
                 {[
+                  "Para Picar",
                   "Sandwiches",
                   "Burgers",
                   "Chicken Tenders",
                   "Salsas",
                   "Ensaladas",
-                  "Para Picar",
                   "Boxes",
                   "Pizzas",
+                  "Drinks",
                 ].map((text, idx) => (
                   <ListItem button key={text} style={{ textAlign: "end" }}>
                     <ListItemText
@@ -175,7 +180,8 @@ function App() {
                             component="span"
                             variant="h4"
                             color="primary"
-                            onClick={() => goToElment(idx)}>
+                            onClick={() => goToElment(idx)}
+                          >
                             {text}
                           </Typography>
                         </React.Fragment>

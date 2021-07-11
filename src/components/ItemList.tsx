@@ -79,6 +79,12 @@ const ItemList = () => {
       .sort((a: IMenuItem, b: IMenuItem) => (a.position < b.position ? -1 : 1));
   }, [menu]);
 
+  const drinkMenu = useMemo(() => {
+    return menu
+      .filter((item: IMenuItem) => item.category === "drinks")
+      .sort((a: IMenuItem, b: IMenuItem) => (a.position < b.position ? -1 : 1));
+  }, [menu]);
+
   return (
     <div>
       <Box mb={10}>
@@ -92,6 +98,27 @@ const ItemList = () => {
 
         {!loading && (
           <>
+            <div id="entrees">
+              <Typography variant="h4" color="primary" className="mt-10">
+                <strong>Para Picar</strong>
+              </Typography>
+              <Grid container spacing={isSmall ? 1 : 4}>
+                {entreesMenu &&
+                  entreesMenu.map((menuItem: IMenuItem) => {
+                    return (
+                      <Grid item xs={12} md={4} key={menuItem.id}>
+                        <ItemCard
+                          title={menuItem.title}
+                          description={menuItem.description}
+                          price={menuItem.price}
+                          imgSrc={menuItem.imgSrc}
+                        />
+                      </Grid>
+                    );
+                  })}
+              </Grid>
+            </div>
+
             <div id="sandwiches">
               <div className="titleWrapper">
                 <Typography variant="h4" color="primary" className="mt-10 mr-2">
@@ -212,27 +239,6 @@ const ItemList = () => {
               </Grid>
             </div>
 
-            <div id="entrees">
-              <Typography variant="h4" color="primary" className="mt-10">
-                <strong>Para Picar</strong>
-              </Typography>
-              <Grid container spacing={isSmall ? 1 : 4}>
-                {entreesMenu &&
-                  entreesMenu.map((menuItem: IMenuItem) => {
-                    return (
-                      <Grid item xs={12} md={4} key={menuItem.id}>
-                        <ItemCard
-                          title={menuItem.title}
-                          description={menuItem.description}
-                          price={menuItem.price}
-                          imgSrc={menuItem.imgSrc}
-                        />
-                      </Grid>
-                    );
-                  })}
-              </Grid>
-            </div>
-
             <div id="boxes">
               <Typography variant="h4" color="primary" className="mt-10">
                 <strong>Boxes</strong>
@@ -261,6 +267,27 @@ const ItemList = () => {
               <Grid container spacing={isSmall ? 1 : 4}>
                 {pizzaMenu &&
                   pizzaMenu.map((menuItem: IMenuItem) => {
+                    return (
+                      <Grid item xs={12} md={4} key={menuItem.id}>
+                        <ItemCard
+                          title={menuItem.title}
+                          description={menuItem.description}
+                          price={menuItem.price}
+                          imgSrc={menuItem.imgSrc}
+                        />
+                      </Grid>
+                    );
+                  })}
+              </Grid>
+            </div>
+
+            <div id="drinks">
+              <Typography variant="h4" color="primary" className="mt-10">
+                <strong>Drinks</strong>
+              </Typography>
+              <Grid container spacing={isSmall ? 1 : 4}>
+                {drinkMenu &&
+                  drinkMenu.map((menuItem: IMenuItem) => {
                     return (
                       <Grid item xs={12} md={4} key={menuItem.id}>
                         <ItemCard

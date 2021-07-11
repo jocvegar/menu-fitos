@@ -88,7 +88,8 @@ function ItemCard({ title, description, price, imgSrc }: Props) {
       className={classes.root}
       onClick={() => handleOverlayHeight()}
       onMouseEnter={() => isMdOrBigger && showOverLay()}
-      onMouseLeave={() => isMdOrBigger && hideOverLay()}>
+      onMouseLeave={() => isMdOrBigger && hideOverLay()}
+    >
       <CardMedia
         className={classes.media}
         image={imgSrc || placeholder}
@@ -101,7 +102,8 @@ function ItemCard({ title, description, price, imgSrc }: Props) {
           gutterBottom
           variant={"h3" as any}
           className={classes.mainOverlay}
-          data-aos="fade-right">
+          data-aos="fade-right"
+        >
           {title}
         </Typography>
       )}
@@ -112,7 +114,8 @@ function ItemCard({ title, description, price, imgSrc }: Props) {
             gutterBottom
             variant={"h4" as any}
             align="left"
-            color="primary">
+            color="primary"
+          >
             {title}
           </Typography>
           <br />
